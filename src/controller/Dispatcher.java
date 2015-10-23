@@ -22,6 +22,20 @@ import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
 
+    private static Dispatcher INSTANCE;
+    
+    private Dispatcher(){
+        
+    }
+    
+    public static Dispatcher getDispatcher(){
+        if(INSTANCE == null){
+            INSTANCE = new Dispatcher();
+        }
+        
+        return INSTANCE;
+    }
+    
     /**
      * Distribue les actions de l'utilsiateur à des traitements
      *

@@ -21,6 +21,7 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
 
         initComponents();
         configFrame();
+        putComponents();
         refresh();
 
     }
@@ -41,7 +42,7 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         pandaProdLabelReferentiel = new view.component.PandaProdLabel();
         jToolBar1 = new javax.swing.JToolBar();
-        pandaProdButton1 = new view.component.PandaProdButton();
+        pandaProdButtonNotify = new view.component.PandaProdButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         pandaProdButtonAddApplication = new view.component.PandaProdButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
@@ -64,11 +65,11 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
 
         jToolBar1.setRollover(true);
 
-        pandaProdButton1.setText("Notification");
-        pandaProdButton1.setFocusable(false);
-        pandaProdButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pandaProdButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(pandaProdButton1);
+        pandaProdButtonNotify.setText("Notification");
+        pandaProdButtonNotify.setFocusable(false);
+        pandaProdButtonNotify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pandaProdButtonNotify.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(pandaProdButtonNotify);
         jToolBar1.add(jSeparator4);
 
         pandaProdButtonAddApplication.setText("Ajout d'application");
@@ -176,16 +177,28 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar jToolBar1;
-    private view.component.PandaProdButton pandaProdButton1;
     private view.component.PandaProdButton pandaProdButtonAddApplication;
     private view.component.PandaProdButton pandaProdButtonExportApplication;
     private view.component.PandaProdButton pandaProdButtonManageUser;
     private view.component.PandaProdButton pandaProdButtonModifyApplication;
+    private view.component.PandaProdButton pandaProdButtonNotify;
     private view.component.PandaProdLabel pandaProdLabelMyApp;
     private view.component.PandaProdLabel pandaProdLabelReferentiel;
     private view.component.PandaProdLabel pandaProdLabelWelcome;
     // End of variables declaration//GEN-END:variables
 
+    public void putComponents(){
+        hsJcomponent.put("pandaProdButtonAddApplication", pandaProdButtonAddApplication);
+        hsJcomponent.put("pandaProdButtonExportApplication", pandaProdButtonExportApplication);
+        hsJcomponent.put("pandaProdButtonManageUser", pandaProdButtonManageUser);
+        hsJcomponent.put("pandaProdButtonModifyApplication", pandaProdButtonModifyApplication);
+        hsJcomponent.put("pandaProdButtonNotify", pandaProdButtonNotify);
+        hsJcomponent.put("pandaProdLabelMyApp", pandaProdLabelMyApp);
+        hsJcomponent.put("pandaProdLabelReferentiel", pandaProdLabelReferentiel);
+        hsJcomponent.put("pandaProdLabelWelcome", pandaProdLabelWelcome);
+        
+    }
+    
     private void configFrame() {
         setTitle("Acceuil");
 

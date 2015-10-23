@@ -23,7 +23,7 @@ public class PasswordForgottenFrameInitializer extends AbstractIHMAction{
 
     @Override
     public boolean execute(Object... object) {
-        Dispatcher dispatcher = new Dispatcher();
+        Dispatcher dispatcher = Dispatcher.getDispatcher();
         PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendPassword");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendMailForgottenPassword);

@@ -111,7 +111,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="view.component.PandaProdButton" name="pandaProdButton1">
+        <Component class="view.component.PandaProdButton" name="pandaProdButtonNotify">
           <Properties>
             <Property name="text" type="java.lang.String" value="Notification"/>
             <Property name="focusable" type="boolean" value="false"/>

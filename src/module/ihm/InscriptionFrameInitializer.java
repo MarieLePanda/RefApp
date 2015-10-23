@@ -28,7 +28,7 @@ public class InscriptionFrameInitializer extends AbstractIHMAction {
 
     @Override
     public boolean execute(Object... object) {
-        Dispatcher dispatcher = new Dispatcher();
+        Dispatcher dispatcher = Dispatcher.getDispatcher();
         PandaProdButton validate = (PandaProdButton) hsJcomponent.get("pandaProdButtonValidate");
         validate.addActionListener(dispatcher);
         validate.setActionCommand(ActionName.createAccount);
