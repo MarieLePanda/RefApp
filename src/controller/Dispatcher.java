@@ -15,27 +15,30 @@ import java.util.logging.Logger;
 import module.backoffice.ConnectAccountAction;
 import module.backoffice.CreateAccountAction;
 import module.ihm.InscriptionFrameInitializer;
+import module.ihm.MainFrameInitializer;
 import view.InscriptionPPFrame;
 import view.MainPPFrame;
+import view.ManageUserPPFrame;
 import view.component.PandaProdPasswordField;
 import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
 
     private static Dispatcher INSTANCE;
-    
-    private Dispatcher(){
-        
+    private final PandaProdApplication application = PandaProdApplication.getApplication();
+
+    private Dispatcher() {
+
     }
-    
-    public static Dispatcher getDispatcher(){
-        if(INSTANCE == null){
+
+    public static Dispatcher getDispatcher() {
+        if (INSTANCE == null) {
             INSTANCE = new Dispatcher();
         }
-        
+
         return INSTANCE;
     }
-    
+
     /**
      * Distribue les actions de l'utilsiateur à des traitements
      *
@@ -54,11 +57,11 @@ public class Dispatcher implements ActionListener {
 
     public void logAccountAction() {
         System.err.println("log");
-        PandaProdApplication application = PandaProdApplication.getApplication();
         boolean connect = new ConnectAccountAction().execute();
         if (connect) {
             application.getMainFrame().dispose();
             application.setMainFrame(new MainPPFrame());
+            MainFrameInitializer.getInstance(application.getMainFrame()).execute();
         }
     }
 
@@ -80,7 +83,6 @@ public class Dispatcher implements ActionListener {
 
     public void createAccountAction() { // compte cookie swipe a créé
         System.err.println("create");
-        PandaProdApplication application = PandaProdApplication.getApplication();
         String login = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldLoginAdressMail")).getText();
         String pwd = new String(((PandaProdPasswordField) application.getFocusFrameJComponent("pandaProdPasswordFieldPassword")).getPassword());
         String backup = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldBackupMail")).getText();
@@ -92,13 +94,13 @@ public class Dispatcher implements ActionListener {
 
     public void inscriptionAction() {
         System.err.println("Inscription");
-        PandaProdApplication application = PandaProdApplication.getApplication();
         application.setFocusFrame(new InscriptionPPFrame());
         new InscriptionFrameInitializer(application.getFocusFrame()).execute();
 
     }
-    
-    public void manageUserAction(){
+
+    public void manageUserAction() {
         System.err.println("Manage user");
+        application.setFocusFrame(new ManageUserPPFrame());
     }
 }
