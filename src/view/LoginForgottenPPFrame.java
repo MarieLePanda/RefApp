@@ -35,28 +35,6 @@ public class LoginForgottenPPFrame extends PandaProdFrame implements IJFrame {
     	refresh();
     	
     }
-    
-    @Override
-    public final void configFrame(){
-    	
-    	setTitle("Login oublié");
-    	
-    	setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
-        setSize(360, 240);
-        setResizable(false);
-        
-    }
-    
-    @Override
-    public final void putComponents(){
-    	
-    	hsJcomponent.put("pandaProdButtonSendLogin", pandaProdButtonSendLogin);
-        hsJcomponent.put("pandaProdLabelLogin", pandaProdLabelMailAddress);
-        hsJcomponent.put("pandaProdTextFieldMailAddress", pandaProdTextFieldMailAddress);
-        
-    }
 
     private void initComponents() {
 
@@ -140,6 +118,24 @@ public class LoginForgottenPPFrame extends PandaProdFrame implements IJFrame {
             }
         });
         
+    }
+        
+    @Override
+    public final void configFrame(){
+    	setTitle("Login oublié");
+    	setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setVisible(true);
+        setSize(360, 240);
+        setResizable(false);
+        
+    }
+    
+    @Override
+    public final void putComponents(){
+    	hsJcomponent.put("pandaProdButtonSendLogin", pandaProdButtonSendLogin);
+        hsJcomponent.put("pandaProdLabelLogin", pandaProdLabelMailAddress);
+        hsJcomponent.put("pandaProdTextFieldMailAddress", pandaProdTextFieldMailAddress);
     }
 
     @Override

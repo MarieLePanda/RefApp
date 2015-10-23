@@ -5,7 +5,10 @@
  */
 package module.ihm;
 
+import controller.ActionName;
+import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
+import view.component.PandaProdButton;
 import view.component.PandaProdFrame;
 
 /**
@@ -24,12 +27,17 @@ public class MainFrameInitializer extends AbstractIHMAction {
         if (INSTANCE == null) {
             INSTANCE = new MainFrameInitializer(ppFrame);
         }
-        
+
         return INSTANCE;
     }
 
     @Override
     public boolean execute(Object... object) {
+        Dispatcher dispatcher = Dispatcher.getDispatcher();
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonManageUser");
+        button.addActionListener(dispatcher);
+        button.setActionCommand(ActionName.manageUser);
+        
         return false;
     }
 

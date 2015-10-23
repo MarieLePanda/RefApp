@@ -10,6 +10,8 @@ import errorMessage.CodeError;
 import interfaces.IAction;
 import javax.swing.JOptionPane;
 import model.User;
+import view.component.PandaProdPasswordField;
+import view.component.PandaProdTextField;
 
 /**
  *
@@ -19,10 +21,18 @@ public class ConnectAccountAction implements IAction {
 
     @Override
     public boolean execute(Object... object) {
-        String login = (String) object[0];
-        String password = (String) object[1];
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        
+//Code pour se connecter facilement en développement
+        System.err.println("Pensez à enlever se code pour la MEP");
+        ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldLogin")).setText("panda.roux.corp@gmail.com");
+        ((PandaProdPasswordField) application.getMainFrameJComponent("pandaProdPasswordFieldPassword")).setText("pandaProd");
+        //Fin du code rajouté
+        
+        String login = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldLogin")).getText();
+        String password = new String(((PandaProdPasswordField) application.getMainFrameJComponent("pandaProdPasswordFieldPassword")).getPassword());
 
-        User u = PandaProdApplication.getApplication().getUser();
+        User u = application.getUser();
         u.setLoginAdressMail(login);
         u.setPassword(password);
 

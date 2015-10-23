@@ -55,9 +55,7 @@ public class Dispatcher implements ActionListener {
     public void logAccountAction() {
         System.err.println("log");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        String login = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldLogin")).getText();
-        String pwd = new String(((PandaProdPasswordField) application.getMainFrameJComponent("pandaProdPasswordFieldPassword")).getPassword());
-        boolean connect = new ConnectAccountAction().execute(login, pwd);
+        boolean connect = new ConnectAccountAction().execute();
         if (connect) {
             application.getMainFrame().dispose();
             application.setMainFrame(new MainPPFrame());
@@ -98,5 +96,9 @@ public class Dispatcher implements ActionListener {
         application.setFocusFrame(new InscriptionPPFrame());
         new InscriptionFrameInitializer(application.getFocusFrame()).execute();
 
+    }
+    
+    public void manageUserAction(){
+        System.err.println("Manage user");
     }
 }
