@@ -187,7 +187,8 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
     private view.component.PandaProdLabel pandaProdLabelWelcome;
     // End of variables declaration//GEN-END:variables
 
-    public void putComponents(){
+    @Override
+    public final void putComponents(){
         hsJcomponent.put("pandaProdButtonAddApplication", pandaProdButtonAddApplication);
         hsJcomponent.put("pandaProdButtonExportApplication", pandaProdButtonExportApplication);
         hsJcomponent.put("pandaProdButtonManageUser", pandaProdButtonManageUser);
@@ -199,7 +200,8 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
         
     }
     
-    private void configFrame() {
+    @Override
+    public final void configFrame() {
         setTitle("Acceuil");
 
         setLocationRelativeTo(null);
@@ -210,12 +212,4 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
 
     }
 
-    @Override
-    public void refresh() {
-
-        validate();
-        repaint();
-        revalidate();
-
-    }
 }

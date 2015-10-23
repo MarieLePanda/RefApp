@@ -36,7 +36,8 @@ public class LoginForgottenPPFrame extends PandaProdFrame implements IJFrame {
     	
     }
     
-    private void configFrame(){
+    @Override
+    public final void configFrame(){
     	
     	setTitle("Login oublié");
     	
@@ -48,7 +49,8 @@ public class LoginForgottenPPFrame extends PandaProdFrame implements IJFrame {
         
     }
     
-    private void putComponents(){
+    @Override
+    public final void putComponents(){
     	
     	hsJcomponent.put("pandaProdButtonSendLogin", pandaProdButtonSendLogin);
         hsJcomponent.put("pandaProdLabelLogin", pandaProdLabelMailAddress);

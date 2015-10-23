@@ -57,7 +57,8 @@ public class LoginPPFrame extends PandaProdFrame implements IJFrame {
 
     }
 
-    private void putComponents() {
+    @Override
+    public final void putComponents() {
 
         hsJcomponent.put("pandaProdButtonLogin", pandaProdButtonLogin);
         hsJcomponent.put("pandaProdButtonInscription", pandaProdButtonInscription);
@@ -70,7 +71,8 @@ public class LoginPPFrame extends PandaProdFrame implements IJFrame {
 
     }
 
-    private void configFrame() {
+    @Override
+    public final void configFrame() {
 
         setTitle("Login");
 

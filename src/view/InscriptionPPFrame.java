@@ -25,7 +25,7 @@ public class InscriptionPPFrame extends PandaProdFrame implements IJFrame {
     }
     
     
-    private void configFrame(){
+    public final void configFrame(){
     	
     	setTitle("Inscription");
     	setLocationRelativeTo(null);
@@ -34,7 +34,8 @@ public class InscriptionPPFrame extends PandaProdFrame implements IJFrame {
         setResizable(false);
     }
     
-    private void putComponents(){
+    @Override
+    public final void putComponents(){
     	
     	hsJcomponent.put("pandaProdPasswordFieldPassword", pandaProdPasswordFieldPassword);
         hsJcomponent.put("pandaProdTextFieldBackupMail", pandaProdTextFieldBackupMail);
@@ -43,14 +44,6 @@ public class InscriptionPPFrame extends PandaProdFrame implements IJFrame {
         hsJcomponent.put("pandaProdButtonCancel", pandaProdButtonCancel);   
     }
 
-    @Override
-    public void refresh() {
-    	
-    	validate();
-        repaint();
-        revalidate();
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

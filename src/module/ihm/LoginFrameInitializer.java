@@ -36,6 +36,10 @@ public class LoginFrameInitializer extends AbstractIHMAction {
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonInscription");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.insciption);
+        
+        //Code pour se connecter facilement en développement
+        System.err.println("Pensez à enlever se code pour la MEP");
+        
         return true;
     }
 

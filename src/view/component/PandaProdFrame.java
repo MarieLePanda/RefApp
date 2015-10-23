@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-public class PandaProdFrame extends JFrame implements IJFrame{
+public abstract class PandaProdFrame extends JFrame implements IJFrame{
     
     private static final long serialVersionUID = 1L;
     
@@ -34,4 +34,8 @@ public class PandaProdFrame extends JFrame implements IJFrame{
         repaint();
         revalidate();
     }
+    
+    abstract public void putComponents();
+    
+    abstract public void configFrame();
 }
