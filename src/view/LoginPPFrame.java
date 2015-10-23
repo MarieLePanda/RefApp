@@ -1,11 +1,8 @@
 package view;
 
-import interfaces.IJFrame;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import java.io.File;
-
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 import javax.swing.UIManager;
@@ -20,7 +17,7 @@ import view.component.PandaProdPanel;
 import view.component.PandaProdPasswordField;
 import view.component.PandaProdTextField;
 
-public class LoginPPFrame extends PandaProdFrame implements IJFrame {
+public class LoginPPFrame extends PandaProdFrame {
 
     private static final long serialVersionUID = -1283545032999719731L;
 
@@ -73,20 +70,12 @@ public class LoginPPFrame extends PandaProdFrame implements IJFrame {
 
     @Override
     public final void configFrame() {
-
+        super.configFrame();
         setTitle("Login");
-
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
         setSize(720, 480);
-        setResizable(false);
-
         pandaProdButtonLogin.setPreferredSize(pandaProdButtonInscription.getSize());
-
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((dim.width / 2) - (getSize().width / 2), (dim.height / 2) - (getSize().height / 2));
-
         pandaProdPasswordFieldPassword.setPreferredSize(new Dimension(pandaProdTextFieldLogin.getSize().width + 45, pandaProdPasswordFieldPassword.getSize().height));
         pandaProdPasswordFieldPassword.setSize(new Dimension(pandaProdTextFieldLogin.getSize().width + 45, pandaProdTextFieldLogin.getSize().height));
         pandaProdTextFieldLogin.setPreferredSize(new Dimension(pandaProdTextFieldLogin.getSize().width + 45, pandaProdTextFieldLogin.getSize().height));
@@ -228,16 +217,5 @@ public class LoginPPFrame extends PandaProdFrame implements IJFrame {
                 new LoginPPFrame().setVisible(true);
             }
         });
-
     }
-
-    @Override
-    public void refresh() {
-
-        validate();
-        repaint();
-        revalidate();
-
-    }
-
 }

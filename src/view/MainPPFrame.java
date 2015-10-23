@@ -5,14 +5,13 @@
  */
 package view;
 
-import interfaces.IJFrame;
 import view.component.PandaProdFrame;
 
 /**
  *
  * @author Lucas
  */
-public class MainPPFrame extends PandaProdFrame implements IJFrame {
+public class MainPPFrame extends PandaProdFrame {
 
     /**
      * Creates new form MainPPFrame
@@ -202,13 +201,8 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
     
     @Override
     public final void configFrame() {
+        super.configFrame();
         setTitle("Acceuil");
-
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
-        pack();
-        setResizable(false);
 
     }
 

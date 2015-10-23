@@ -5,14 +5,13 @@
  */
 package view;
 
-import interfaces.IJFrame;
 import view.component.PandaProdFrame;
 
 /**
  *
  * @author Lucas
  */
-public class InscriptionPPFrame extends PandaProdFrame implements IJFrame {
+public class InscriptionPPFrame extends PandaProdFrame {
 
     /**
      * Creates new form InscriptionCSFrame
@@ -23,25 +22,20 @@ public class InscriptionPPFrame extends PandaProdFrame implements IJFrame {
         putComponents();
         refresh();
     }
-    
-    
-    public final void configFrame(){
-    	
-    	setTitle("Inscription");
-    	setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
-        setResizable(false);
+
+    public final void configFrame() {
+        super.configFrame();
+        setTitle("Inscription");
     }
-    
+
     @Override
-    public final void putComponents(){
-    	
-    	hsJcomponent.put("pandaProdPasswordFieldPassword", pandaProdPasswordFieldPassword);
+    public final void putComponents() {
+
+        hsJcomponent.put("pandaProdPasswordFieldPassword", pandaProdPasswordFieldPassword);
         hsJcomponent.put("pandaProdTextFieldBackupMail", pandaProdTextFieldBackupMail);
         hsJcomponent.put("pandaProdTextFieldLoginAdressMail", pandaProdTextFieldLoginAdressMail);
         hsJcomponent.put("pandaProdButtonValidate", pandaProdButtonValidate);
-        hsJcomponent.put("pandaProdButtonCancel", pandaProdButtonCancel);   
+        hsJcomponent.put("pandaProdButtonCancel", pandaProdButtonCancel);
     }
 
     /**

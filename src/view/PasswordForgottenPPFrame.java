@@ -1,7 +1,5 @@
 package view;
 
-import interfaces.IJFrame;
-
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
 import javax.swing.UIManager;
@@ -12,7 +10,7 @@ import view.component.PandaProdFrame;
 import view.component.PandaProdLabel;
 import view.component.PandaProdTextField;
 
-public class PasswordForgottenPPFrame extends PandaProdFrame implements IJFrame {
+public class PasswordForgottenPPFrame extends PandaProdFrame {
 
     private static final long serialVersionUID = 1691242087514507446L;
 
@@ -54,15 +52,8 @@ public class PasswordForgottenPPFrame extends PandaProdFrame implements IJFrame 
 
     @Override
     public final void configFrame() {
-
+        super.configFrame();
         setTitle("Mot de passe oublié");
-
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
-        setSize(480, 360);
-        setResizable(false);
-
     }
 
     private void initComponents() {

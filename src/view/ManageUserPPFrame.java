@@ -5,14 +5,13 @@
  */
 package view;
 
-import interfaces.IJFrame;
 import view.component.PandaProdFrame;
 
 /**
  *
  * @author Lucas
  */
-public class ManageUserPPFrame extends PandaProdFrame implements IJFrame {
+public class ManageUserPPFrame extends PandaProdFrame {
 
     /**
      * Creates new form ManageUserPPFrame
@@ -156,12 +155,7 @@ public class ManageUserPPFrame extends PandaProdFrame implements IJFrame {
 
     @Override
     public void configFrame() {
+        super.configFrame();
         setTitle("Gestion des utilisateurs");
-
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setVisible(true);
-        pack();
-        setResizable(false);
     }
 }
