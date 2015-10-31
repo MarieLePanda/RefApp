@@ -11,13 +11,14 @@ import view.component.PandaProdFrame;
  *
  * @author Lucas
  */
-public class UserPPFrame extends PandaProdFrame{
+public class UserPPFrame extends PandaProdFrame {
 
     /**
      * Creates new form UserPPFrame
      */
     public UserPPFrame() {
         initComponents();
+        putComponents();
         configFrame();
     }
 
@@ -144,7 +145,11 @@ public class UserPPFrame extends PandaProdFrame{
 
     @Override
     public void putComponents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        hsJcomponent.put("jCheckBoxIsAdministrator", jCheckBoxIsAdministrator);
+        hsJcomponent.put("pandaProdButtonCancel", pandaProdButtonCancel);
+        hsJcomponent.put("pandaProdButtonValidate", pandaProdButtonValidate);
+        hsJcomponent.put("pandaProdPasswordFieldPasswordUser", pandaProdPasswordFieldPasswordUser);
+        hsJcomponent.put("pandaProdTextFieldLoginMail", pandaProdTextFieldLoginMail);
     }
 
 }

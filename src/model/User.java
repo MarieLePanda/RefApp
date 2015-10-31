@@ -5,7 +5,10 @@
  */
 package model;
 
-import dao.mysql.MySQLQuery;
+import dao.mysql.MySQLConnect;
+import dao.mysql.MySQLUser;
+import errorMessage.CodeError;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,12 +25,28 @@ public class User {
     private String loginAdressMail, password;
     private boolean administrator;
 
+    //Variable static
+    private static ArrayList<User> listUser;
+
     //Constrcuteur
     /**
      * Constructeur par defaut
      */
     public User() {
 
+    }
+
+    /**
+     * Constructeur à utiliser lors du chargement d'un utilisateur.
+     *
+     * @param id id de l'utilisateur
+     * @param loginAdressMail login de connexion du compte
+     * @param administrator Status de l'utilisateur
+     */
+    public User(int id, String loginAdressMail, boolean administrator) {
+        this.id = id;
+        this.loginAdressMail = loginAdressMail;
+        this.administrator = administrator;
     }
 
     /**
@@ -56,7 +75,7 @@ public class User {
      * @return l'utilisateur créé
      */
     public int create() {
-        return MySQLQuery.createUser(this);
+        return MySQLUser.createUser(this);
     }
 
     /**
@@ -65,7 +84,7 @@ public class User {
      * @return Utilisateur connecté
      */
     public int connect() {
-        return MySQLQuery.connectUser(this);
+        return MySQLUser.connectUser(this);
     }
 
     /**
@@ -87,13 +106,6 @@ public class User {
         return false;
     }
 
-    /**
-     * *
-     * Ajoute un compte courriel au préférence de l'utilisateur
-     *
-     * @param newMailAccount compte courriel à ajouter
-     * @return Si le compte courriel à bien été ajouté
-     */
     //Getter & setter
     public int getId() {
         return id;
@@ -122,12 +134,12 @@ public class User {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void setAdministrator(boolean administrator){
+
+    public void setAdministrator(boolean administrator) {
         this.administrator = administrator;
     }
-    
-    public boolean isAdministrator(){
+
+    public boolean isAdministrator() {
         return administrator;
     }
 
@@ -159,4 +171,10 @@ public class User {
         return "User{" + "id=" + id + ", loginAdressMail=" + loginAdressMail + ", password=" + password + ", administrator=" + administrator;
     }
 
+    //Méthode static de la classe utilisateur
+    public static ArrayList<User> getListUser() {
+        listUser = new ArrayList<User>();
+        MySQLUser.loadAllUser(listUser);
+        return listUser;
+    }
 }

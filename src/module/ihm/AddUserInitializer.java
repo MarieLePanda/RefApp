@@ -16,31 +16,25 @@ import view.component.PandaProdFrame;
  *
  * @author Lucas
  */
-public class MainFrameInitializer extends AbstractIHMAction {
+public class AddUserInitializer extends AbstractIHMAction{
 
-    private static MainFrameInitializer INSTANCE;
-
-    private MainFrameInitializer(PandaProdFrame ppFrame) {
-        super(ppFrame);
-    }
-
-    public static MainFrameInitializer getInstance(PandaProdFrame ppFrame) {
-        if (INSTANCE == null) {
-            INSTANCE = new MainFrameInitializer(ppFrame);
-        }
-
-        return INSTANCE;
+    public AddUserInitializer(PandaProdFrame csFrame) {
+        super(csFrame);
     }
 
     @Override
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
         Dispatcher dispatcher = Dispatcher.getDispatcher();
-        PandaProdButton button = (PandaProdButton) application.getMainFrameJComponent("pandaProdButtonManageUser");
+        PandaProdButton button = (PandaProdButton) application.getFocusFrameJComponent("pandaProdButtonValidate");
         button.addActionListener(dispatcher);
-        button.setActionCommand(ActionName.manageUser);
+        button.setActionCommand(ActionName.createUser);
+        button = (PandaProdButton) application.getFocusFrameJComponent("pandaProdButtonCancel");
+        button.addActionListener(dispatcher);
+        button.setActionCommand(ActionName.closeFocusFrame);
         
-        return false;
+        
+        return true;
     }
-
+    
 }

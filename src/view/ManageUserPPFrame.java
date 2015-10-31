@@ -18,6 +18,7 @@ public class ManageUserPPFrame extends PandaProdFrame {
      */
     public ManageUserPPFrame() {
         initComponents();
+        putComponents();
         configFrame();
     }
 
@@ -150,7 +151,11 @@ public class ManageUserPPFrame extends PandaProdFrame {
 
     @Override
     public void putComponents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        hsJcomponent.put("jListUser", jListUser);
+        hsJcomponent.put("pandaProdButtonAddUser", pandaProdButtonAddUser);
+        hsJcomponent.put("pandaProdButtonDeleteUser", pandaProdButtonDeleteUser);
+        hsJcomponent.put("pandaProdButtonModifyUser", pandaProdButtonModifyUser);
+        hsJcomponent.put("pandaProdLabelListUser", pandaProdLabelListUser);
     }
 
     @Override

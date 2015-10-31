@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
@@ -18,7 +19,7 @@ import model.User;
  *
  * @author Lucas
  */
-public class MySQLQuery {
+public class MySQLUser {
 
     public static int createUser(User user) {
         int error;
@@ -30,7 +31,7 @@ public class MySQLQuery {
             try {
                 connectionInstance = MySQLConnect.getConnection();
             } catch (Exception ex) {
-                Logger.getLogger(MySQLQuery.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
                 error = CodeError.CONNEXION_FAIL;
                 return error;
             }
@@ -38,7 +39,7 @@ public class MySQLQuery {
             statementInstance = connectionInstance.prepareStatement(request);
             statementInstance.setString(1, user.getLoginAdressMail());
             statementInstance.setString(2, user.getPassword());
-            statementInstance.setBoolean(2, user.isAdministrator());
+            statementInstance.setBoolean(3, user.isAdministrator());
             int statut = statementInstance.executeUpdate();
 
             if (statut == 1) {
@@ -48,21 +49,21 @@ public class MySQLQuery {
             }
 
         } catch (SQLException ex) {
-                Logger.getLogger(MySQLQuery.class.getName()).log(Level.SEVERE, null, ex);
-                error = CodeError.STATEMENT_EXECUTE_FAIL;
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+            error = CodeError.STATEMENT_EXECUTE_FAIL;
         } finally {
             if (statementInstance != null) {
                 try {
                     statementInstance.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(MySQLQuery.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
                     error = CodeError.STATEMENT_CLOSE_FAIL;
                 }
             }
         }
         return error;
     }
-    
+
     public static int connectUser(User user) {
         int error;
         Connection connectionInstance = null;
@@ -71,11 +72,10 @@ public class MySQLQuery {
 
         try {
             connectionInstance = MySQLConnect.getConnection();
-            if(connectionInstance == null) {
-                Logger.getLogger(MySQLQuery.class.getName()).log(Level.SEVERE, "CONNEXION_FAIL");
-                error =  CodeError.CONNEXION_FAIL;
-            }
-            else {
+            if (connectionInstance == null) {
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, "CONNEXION_FAIL");
+                error = CodeError.CONNEXION_FAIL;
+            } else {
                 statementInstance = connectionInstance.prepareStatement(request);
 
                 statementInstance.setString(1, user.getLoginAdressMail());
@@ -90,16 +90,52 @@ public class MySQLQuery {
                 } else {
                     error = CodeError.FAILLURE;
                 }
-            }    
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(MySQLQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
             error = CodeError.STATEMENT_EXECUTE_FAIL;
         } finally {
             if (statementInstance != null) {
                 try {
                     statementInstance.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(MySQLQuery.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+                    error = CodeError.STATEMENT_CLOSE_FAIL;
+                }
+            }
+        }
+        return error;
+    }
+
+    public static int loadAllUser(ArrayList<User> listUser) {
+        int error = CodeError.SUCESS;
+        Connection connectionInstance = null;
+        PreparedStatement statementInstance = null;
+        String request = "SELECT userId, loginMail, administrator FROM user;";
+
+        try {
+            connectionInstance = MySQLConnect.getConnection();
+            if (connectionInstance == null) {
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, "CONNEXION_FAIL");
+                error = CodeError.CONNEXION_FAIL;
+            } else {
+                statementInstance = connectionInstance.prepareStatement(request);
+
+                ResultSet result = statementInstance.executeQuery();
+
+                while (result.next()) {
+                    listUser.add(new User(result.getInt(1), result.getString(2), result.getBoolean(3)));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+            error = CodeError.STATEMENT_EXECUTE_FAIL;
+        } finally {
+            if (statementInstance != null) {
+                try {
+                    statementInstance.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
                     error = CodeError.STATEMENT_CLOSE_FAIL;
                 }
             }

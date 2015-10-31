@@ -14,11 +14,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import module.backoffice.ConnectAccountAction;
 import module.backoffice.CreateAccountAction;
+import module.backoffice.CreateUser;
+import module.ihm.AddUserInitializer;
 import module.ihm.InscriptionFrameInitializer;
 import module.ihm.MainFrameInitializer;
+import module.ihm.ManageUserFrameInitializer;
 import view.InscriptionPPFrame;
 import view.MainPPFrame;
 import view.ManageUserPPFrame;
+import view.UserPPFrame;
 import view.component.PandaProdPasswordField;
 import view.component.PandaProdTextField;
 
@@ -102,5 +106,24 @@ public class Dispatcher implements ActionListener {
     public void manageUserAction() {
         System.err.println("Manage user");
         application.setFocusFrame(new ManageUserPPFrame());
+        new ManageUserFrameInitializer(application.getFocusFrame()).execute();
+    }
+    
+    public void addUserAction(){
+        System.err.println("Add user");
+        application.setFocusFrame(new UserPPFrame());
+        new AddUserInitializer(application.getFocusFrame()).execute();
+    }
+    
+    public void createUserAction(){
+        System.err.println("Create user");
+        if(new CreateUser().execute()){
+            application.getFocusFrame().dispose();
+        }
+    }
+    
+    public void closeFocusFrameAction(){
+        System.err.println("Close focus frame");
+        application.getFocusFrame().dispose();
     }
 }

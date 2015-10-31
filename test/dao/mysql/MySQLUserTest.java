@@ -19,9 +19,9 @@ import panda.prod.application.PandaProdApplication;
  *
  * @author Lucas
  */
-public class MySQLQueryTest {
+public class MySQLUserTest {
 
-    public MySQLQueryTest() {
+    public MySQLUserTest() {
     }
 
     @BeforeClass
@@ -48,13 +48,13 @@ public class MySQLQueryTest {
         System.out.println("create user");
         User user = new User("panda.roux.corp@gmail.com", "panda.developpeur@gmail.com", "pandaProd");
         int expResult = CodeError.SUCESS;
-        int result = MySQLQuery.createUser(user);
+        int result = MySQLUser.createUser(user);
         assertEquals(expResult, result);
         System.out.println("create user sucess");
         
         System.out.println("create same user");
         expResult = CodeError.STATEMENT_EXECUTE_FAIL;
-        result = MySQLQuery.createUser(user);
+        result = MySQLUser.createUser(user);
         assertEquals(expResult, result);
         System.out.println("create same user sucess");
     
@@ -65,14 +65,14 @@ public class MySQLQueryTest {
         System.out.println("create same user");
         User user = new User("panda.roux.corp@gmail.com", "panda.developpeur@gmail.com", "pandaProd");
         int expResult = CodeError.STATEMENT_INTEGRITY_CONSTRAINT_VIOLATION;
-        MySQLQuery.createUser(user);
-        int result = MySQLQuery.createUser(user);
+        MySQLUser.createUser(user);
+        int result = MySQLUser.createUser(user);
         assertEquals(expResult, result);
     
     }*/
 
     /**
-     * Test of connectUser method, of class MySQLQuery.
+     * Test of connectUser method, of class MySQLUser.
      */
     @Test
     public void testConnectUser() {
@@ -81,7 +81,7 @@ public class MySQLQueryTest {
         user.setLoginAdressMail("panda.roux.corp@gmail.com");
         user.setPassword("pandaProd");
         int expResult = CodeError.SUCESS;
-        int result = MySQLQuery.connectUser(user);
+        int result = MySQLUser.connectUser(user);
         assertEquals(expResult, result);
         
         System.out.println("wrong password");
@@ -89,7 +89,7 @@ public class MySQLQueryTest {
         user.setLoginAdressMail("panda.roux.corp@gmail.com");
         user.setPassword("panda");
         expResult = CodeError.FAILLURE;
-        result = MySQLQuery.connectUser(user);
+        result = MySQLUser.connectUser(user);
         assertEquals(expResult, result);
         
         System.out.println("wrong login");
@@ -97,7 +97,7 @@ public class MySQLQueryTest {
         user.setLoginAdressMail("panda.corp@gmail.com");
         user.setPassword("pandaProd");
         expResult = CodeError.FAILLURE;
-        result = MySQLQuery.connectUser(user);
+        result = MySQLUser.connectUser(user);
         assertEquals(expResult, result);
         
         

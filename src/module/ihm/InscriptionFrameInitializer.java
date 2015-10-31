@@ -10,6 +10,7 @@ import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import panda.prod.application.PandaProdApplication;
 import view.component.PandaProdButton;
 import view.component.PandaProdFrame;
 
@@ -28,12 +29,13 @@ public class InscriptionFrameInitializer extends AbstractIHMAction {
 
     @Override
     public boolean execute(Object... object) {
+        PandaProdApplication application = PandaProdApplication.getApplication();
         Dispatcher dispatcher = Dispatcher.getDispatcher();
-        PandaProdButton validate = (PandaProdButton) hsJcomponent.get("pandaProdButtonValidate");
+        PandaProdButton validate = (PandaProdButton) application.getMainFrameJComponent("pandaProdButtonValidate");
         validate.addActionListener(dispatcher);
         validate.setActionCommand(ActionName.createAccount);
 
-        PandaProdButton cancel = (PandaProdButton) hsJcomponent.get("pandaProdButtonCancel");
+        PandaProdButton cancel = (PandaProdButton) application.getMainFrameJComponent("pandaProdButtonCancel");
         cancel.addActionListener(new ActionListener() {
 
             @Override
