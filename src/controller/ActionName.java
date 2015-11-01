@@ -20,9 +20,11 @@ public class ActionName {
             logout = "logout",
             manageUser = "manageUser",
             addUser = "addUser",
-            deleteUser = "deleteUser",
+            removeUser = "removeUser",
             modifyUser = "modifyUser",
             createUser = "createUser",
+            updateUser = "updateUser",
+            deleteUser = "deleteUser",
             closeFocusFrame = "closeFocusFrame";
 
     public static final Color bg = new Color(1, 1, 1);

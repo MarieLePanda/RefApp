@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/module/ihm/AddUserInitializer.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/view/UserPPFrame.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/module/backoffice/ConnectAccountAction.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/module/backoffice/CreateUser.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/dao/mysql/MySQLUser.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/model/User.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/RefApp/src/controller/Dispatcher.java</file>
+        </group>
     </open-files>
 </project-private>

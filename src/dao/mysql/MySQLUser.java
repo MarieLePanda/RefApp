@@ -107,11 +107,55 @@ public class MySQLUser {
         return error;
     }
 
+    public static int updateUser(User user) {
+        int error;
+        Connection connectionInstance = null;
+        PreparedStatement statementInstance = null;
+        String request = "UPDATE user set loginMail = ?, password = ?, administrator = ? WHERE userID = ?;";
+
+        try {
+            try {
+                connectionInstance = MySQLConnect.getConnection();
+            } catch (Exception ex) {
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+                error = CodeError.CONNEXION_FAIL;
+                return error;
+            }
+
+            statementInstance = connectionInstance.prepareStatement(request);
+            statementInstance.setString(1, user.getLoginAdressMail());
+            statementInstance.setString(2, user.getPassword());
+            statementInstance.setBoolean(3, user.isAdministrator());
+            statementInstance.setInt(4, user.getId());
+            int statut = statementInstance.executeUpdate();
+
+            if (statut == 1) {
+                error = CodeError.SUCESS;
+            } else {
+                error = CodeError.FAILLURE;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+            error = CodeError.STATEMENT_EXECUTE_FAIL;
+        } finally {
+            if (statementInstance != null) {
+                try {
+                    statementInstance.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+                    error = CodeError.STATEMENT_CLOSE_FAIL;
+                }
+            }
+        }
+        return error;
+    }
+
     public static int loadAllUser(ArrayList<User> listUser) {
         int error = CodeError.SUCESS;
         Connection connectionInstance = null;
         PreparedStatement statementInstance = null;
-        String request = "SELECT userId, loginMail, administrator FROM user;";
+        String request = "SELECT userId, loginMail, password, administrator FROM user;";
 
         try {
             connectionInstance = MySQLConnect.getConnection();
@@ -124,7 +168,7 @@ public class MySQLUser {
                 ResultSet result = statementInstance.executeQuery();
 
                 while (result.next()) {
-                    listUser.add(new User(result.getInt(1), result.getString(2), result.getBoolean(3)));
+                    listUser.add(new User(result.getInt(1), result.getString(2), result.getString(3), result.getBoolean(4)));
                 }
             }
         } catch (SQLException ex) {

@@ -12,13 +12,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JList;
+import model.User;
 import module.backoffice.ConnectAccountAction;
 import module.backoffice.CreateAccountAction;
 import module.backoffice.CreateUser;
+import module.backoffice.UpdateUser;
 import module.ihm.AddUserInitializer;
 import module.ihm.InscriptionFrameInitializer;
 import module.ihm.MainFrameInitializer;
 import module.ihm.ManageUserFrameInitializer;
+import module.ihm.ModifyUserInitializer;
 import view.InscriptionPPFrame;
 import view.MainPPFrame;
 import view.ManageUserPPFrame;
@@ -69,22 +73,6 @@ public class Dispatcher implements ActionListener {
         }
     }
 
-    public void updateAccountAction() {
-
-    }
-
-    public void forgottenPasswordAction() {
-
-    }
-
-    public void forgottenLoginAction() {
-
-    }
-
-    public void logoutAction() {
-
-    }
-
     public void createAccountAction() { // compte cookie swipe a créé
         System.err.println("create");
         String login = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldLoginAdressMail")).getText();
@@ -108,21 +96,39 @@ public class Dispatcher implements ActionListener {
         application.setFocusFrame(new ManageUserPPFrame());
         new ManageUserFrameInitializer(application.getFocusFrame()).execute();
     }
-    
-    public void addUserAction(){
+
+    public void addUserAction() {
         System.err.println("Add user");
         application.setFocusFrame(new UserPPFrame());
         new AddUserInitializer(application.getFocusFrame()).execute();
     }
-    
-    public void createUserAction(){
+
+    public void createUserAction() {
         System.err.println("Create user");
-        if(new CreateUser().execute()){
+        if (new CreateUser().execute()) {
             application.getFocusFrame().dispose();
         }
     }
+
+    public void modifyUserAction() {
+        System.err.println("Modify user");
+        JList jlist = (JList) application.getFocusFrameJComponent("jListUser");
+        User user = (User) jlist.getSelectedValue();
+        application.setParam("UserToUpdate", user);
+        application.setFocusFrame(new UserPPFrame());
+        new ModifyUserInitializer(application.getFocusFrame()).execute();
+
+    }
     
-    public void closeFocusFrameAction(){
+    public void updateUserAction(){
+        System.err.println("Update User");
+        if (new UpdateUser().execute()){
+            application.getFocusFrame().dispose();
+        }
+        
+    }
+
+    public void closeFocusFrameAction() {
         System.err.println("Close focus frame");
         application.getFocusFrame().dispose();
     }

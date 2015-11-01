@@ -5,11 +5,8 @@
  */
 package model;
 
-import dao.mysql.MySQLConnect;
 import dao.mysql.MySQLUser;
-import errorMessage.CodeError;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,11 +38,13 @@ public class User {
      *
      * @param id id de l'utilisateur
      * @param loginAdressMail login de connexion du compte
+     * @param password mot de passe 
      * @param administrator Status de l'utilisateur
      */
-    public User(int id, String loginAdressMail, boolean administrator) {
+    public User(int id, String loginAdressMail, String password, boolean administrator) {
         this.id = id;
         this.loginAdressMail = loginAdressMail;
+        this.password = password;
         this.administrator = administrator;
     }
 
@@ -70,41 +69,32 @@ public class User {
 
     //Fonction membre publique
     /**
-     * Sert à créer un utilisateur dans le registre CS
+     * Sert à créer un utilisateur dans le registre
      *
-     * @return l'utilisateur créé
+     * @return
      */
     public int create() {
         return MySQLUser.createUser(this);
     }
 
     /**
-     * Sert à connecter un utilisateur à l'application CS
+     * Sert à connecter un utilisateur à l'application
      *
-     * @return Utilisateur connecté
+     * @return
      */
     public int connect() {
         return MySQLUser.connectUser(this);
     }
 
     /**
-     * Renvoie toutes les données de l'utilisateur
+     * Sert à modifier un utilisateur de l'application
      *
-     * @return table de hash contenant toutes les données utilisateur
+     * @return
      */
-    public HashMap<String, Object> getData() {
-        return null;
+    public int update() {
+        return MySQLUser.updateUser(this);
     }
 
-    /**
-     * Change les informations utilisateur (A mettre en hashmap)
-     *
-     * @param data table de hash contenant toute les données utilisateur
-     * @return Si la mise à jour des données à été correct
-     */
-    public boolean updateData(HashMap<String, Object> data) {
-        return false;
-    }
 
     //Getter & setter
     public int getId() {
