@@ -8,6 +8,7 @@ package module.ihm;
 import controller.ActionName;
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
+import model.User;
 import panda.prod.application.PandaProdApplication;
 import view.component.PandaProdButton;
 import view.component.PandaProdFrame;
@@ -36,9 +37,13 @@ public class MainFrameInitializer extends AbstractIHMAction {
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
         Dispatcher dispatcher = Dispatcher.getDispatcher();
+        User user = application.getUser();
         PandaProdButton button = (PandaProdButton) application.getMainFrameJComponent("pandaProdButtonManageUser");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.manageUser);
+        if(!user.isAdministrator()){
+            button.setVisible(false);
+        }
         
         return false;
     }

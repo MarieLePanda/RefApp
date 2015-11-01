@@ -117,7 +117,6 @@ public class Dispatcher implements ActionListener {
         application.setParam("UserToUpdate", user);
         application.setFocusFrame(new UserPPFrame());
         new ModifyUserInitializer(application.getFocusFrame()).execute();
-
     }
     
     public void updateUserAction(){
@@ -125,7 +124,6 @@ public class Dispatcher implements ActionListener {
         if (new UpdateUser().execute()){
             application.getFocusFrame().dispose();
         }
-        
     }
 
     public void closeFocusFrameAction() {

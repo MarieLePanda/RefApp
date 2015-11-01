@@ -28,7 +28,7 @@ public class UpdateUser implements IAction {
         User user = (User) application.getParam("UserToUpdate");
         String login = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldLoginMail")).getText();
         String password = new String(((PandaProdPasswordField) application.getFocusFrameJComponent("pandaProdPasswordFieldPasswordUser")).getPassword());
-        boolean admin = ((JCheckBox) application.getFocusFrameJComponent("jCheckBoxIsAdministrator")).isEnabled();
+        boolean admin = ((JCheckBox) application.getFocusFrameJComponent("jCheckBoxIsAdministrator")).isSelected();
         user.setLoginAdressMail(login);
         user.setPassword(password);
         user.setAdministrator(admin);
