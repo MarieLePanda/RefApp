@@ -151,6 +151,47 @@ public class MySQLUser {
         return error;
     }
 
+    public static int deleteUser(User user) {
+        int error;
+        Connection connectionInstance = null;
+        PreparedStatement statementInstance = null;
+        String request = "DELETE FROM user WHERE userID = ?;";
+
+        try {
+            try {
+                connectionInstance = MySQLConnect.getConnection();
+            } catch (Exception ex) {
+                Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+                error = CodeError.CONNEXION_FAIL;
+                return error;
+            }
+
+            statementInstance = connectionInstance.prepareStatement(request);
+            statementInstance.setInt(1, user.getId());
+            int statut = statementInstance.executeUpdate();
+
+            if (statut == 1) {
+                error = CodeError.SUCESS;
+            } else {
+                error = CodeError.FAILLURE;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+            error = CodeError.STATEMENT_EXECUTE_FAIL;
+        } finally {
+            if (statementInstance != null) {
+                try {
+                    statementInstance.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MySQLUser.class.getName()).log(Level.SEVERE, null, ex);
+                    error = CodeError.STATEMENT_CLOSE_FAIL;
+                }
+            }
+        }
+        return error;
+    }
+
     public static int loadAllUser(ArrayList<User> listUser) {
         int error = CodeError.SUCESS;
         Connection connectionInstance = null;
@@ -186,4 +227,5 @@ public class MySQLUser {
         }
         return error;
     }
+
 }

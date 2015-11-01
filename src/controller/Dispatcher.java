@@ -12,11 +12,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import model.User;
 import module.backoffice.ConnectAccountAction;
 import module.backoffice.CreateAccountAction;
 import module.backoffice.CreateUser;
+import module.backoffice.DeleteUser;
 import module.backoffice.UpdateUser;
 import module.ihm.AddUserInitializer;
 import module.ihm.InscriptionFrameInitializer;
@@ -118,12 +120,17 @@ public class Dispatcher implements ActionListener {
         application.setFocusFrame(new UserPPFrame());
         new ModifyUserInitializer(application.getFocusFrame()).execute();
     }
-    
-    public void updateUserAction(){
+
+    public void updateUserAction() {
         System.err.println("Update User");
-        if (new UpdateUser().execute()){
+        if (new UpdateUser().execute()) {
             application.getFocusFrame().dispose();
         }
+    }
+
+    public void removeUserAction() {
+        System.err.println("Remove user");
+        new DeleteUser().execute();
     }
 
     public void closeFocusFrameAction() {

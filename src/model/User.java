@@ -38,7 +38,7 @@ public class User {
      *
      * @param id id de l'utilisateur
      * @param loginAdressMail login de connexion du compte
-     * @param password mot de passe 
+     * @param password mot de passe
      * @param administrator Status de l'utilisateur
      */
     public User(int id, String loginAdressMail, String password, boolean administrator) {
@@ -95,6 +95,14 @@ public class User {
         return MySQLUser.updateUser(this);
     }
 
+    /**
+     * Sert à supprimer un utilisateur de l'application
+     *
+     * @return
+     */
+    public int delete() {
+        return MySQLUser.deleteUser(this);
+    }
 
     //Getter & setter
     public int getId() {
