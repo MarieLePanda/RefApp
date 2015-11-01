@@ -26,7 +26,7 @@ public class CreateUser implements IAction {
         PandaProdApplication application = PandaProdApplication.getApplication();
         String login = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldLoginMail")).getText();
         String password = new String(((PandaProdPasswordField) application.getFocusFrameJComponent("pandaProdPasswordFieldPasswordUser")).getPassword());
-        boolean admin = ((JCheckBox) application.getFocusFrameJComponent("jCheckBoxIsAdministrator")).isEnabled();
+        boolean admin = ((JCheckBox) application.getFocusFrameJComponent("jCheckBoxIsAdministrator")).isSelected();
         User user = new User(login, password, admin);
         int error = user.create();
         if (error == CodeError.SUCESS) {
